@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  modelsapi:
+    image: ${DOCKER_REGISTRY-}modelsapi
+    build:
+      context: .
+      dockerfile: ModelsApi/Dockerfile
