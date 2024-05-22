@@ -1,5 +1,6 @@
 bin/
 obj/
 postgres-data/
+minio_data/
 .vs/
 node_modules/

@@ -182,6 +182,10 @@ namespace ModelsApp.Api.Services.ModelInfo
         {
             using (var dbContext = await this.contextFactory.CreateDbContextAsync())
             {
+                if((await dbContext.UserProfiles.FirstOrDefaultAsync(item => item.Guid == uuid)) == null)
+                {
+                    throw new ApiException("Пользователь не найден", typeof(ModelInfo));
+                }
                 var record = await dbContext.Models.Include(item => item.Category)
                     .Include(item => item.Owner)
                     .Where(item => item.Owner.Guid == uuid).ToListAsync();

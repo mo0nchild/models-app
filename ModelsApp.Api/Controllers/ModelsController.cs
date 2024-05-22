@@ -95,7 +95,7 @@ namespace ModelsApp.Api.Controllers
         public async Task<IActionResult> GetInfoHandler([FromQuery] Guid uuid)
         {
             var result = await this.modelInfoService.GetInfoByUUID(uuid);
-            if (result == null) return this.Problem("Модель не найдена");
+            if (result == null) return this.BadRequest("Модель не найдена");
 
             return this.Ok(this.mapper.Map<ModelResponse>(result));
         }
@@ -112,8 +112,11 @@ namespace ModelsApp.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetOwnerListHandler([FromQuery] Guid ownerUuid)
         {
-            var result = await this.modelInfoService.GetOwnedList(ownerUuid);
-            return this.Ok(this.mapper.Map<ModelListResponse>(result));
+            try {
+                var result = await this.modelInfoService.GetOwnedList(ownerUuid);
+                return this.Ok(this.mapper.Map<ModelListResponse>(result));
+            }
+            catch(ApiException errorInfo) { return this.BadRequest(errorInfo.Message); }
         }
     }
 }

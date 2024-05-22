@@ -1,0 +1,831 @@
+{
+	"info": {
+		"_postman_id": "70cbf07a-99d8-44f7-8740-66423ec72bac",
+		"name": "ModelsAppApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15326672",
+		"_collection_link": "https://universal-flare-895768.postman.co/workspace/My-Workspace~fbad1644-89b5-421f-8ea1-f3f6b2d39736/collection/15326672-70cbf07a-99d8-44f7-8740-66423ec72bac?action=share&source=collection_link&creator=15326672"
+	},
+	"item": [
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "Registration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "login",
+									"value": "user1",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234567890",
+									"type": "text"
+								},
+								{
+									"key": "Name",
+									"value": "byterbrod",
+									"type": "text"
+								},
+								{
+									"key": "Email",
+									"value": "user1@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/auth/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"auth",
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/auth/login?login=user1&password=1234567890",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "user1"
+								},
+								{
+									"key": "password",
+									"value": "1234567890"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserProfile",
+			"item": [
+				{
+					"name": "GetUserInfo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.rO742_MKq2wFJBwItbg9n0jkaTunY364rc4kxUEvEIc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/profile/getInfo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"profile",
+								"getInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUserInfo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.rO742_MKq2wFJBwItbg9n0jkaTunY364rc4kxUEvEIc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "byterbrod",
+									"type": "text"
+								},
+								{
+									"key": "biography",
+									"value": "Strange guy2",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/letsp/Desktop/Images/me.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/profile/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"profile",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveUserInfo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.rO742_MKq2wFJBwItbg9n0jkaTunY364rc4kxUEvEIc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/profile/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"profile",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Models",
+			"item": [
+				{
+					"name": "GetListByOwner",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.XjjN9ZUTkb-7dkPw6m2sQysGbjUHg6RYnIw2t_n0Ab4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/models/getOwnerList?ownerUuid=e04dba6e-6d08-4553-9b8f-55ea8a5b5f3e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"models",
+								"getOwnerList"
+							],
+							"query": [
+								{
+									"key": "ownerUuid",
+									"value": "e04dba6e-6d08-4553-9b8f-55ea8a5b5f3e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetModelsList",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.XjjN9ZUTkb-7dkPw6m2sQysGbjUHg6RYnIw2t_n0Ab4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/models/getList?skip=0&take=10&sortingType=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"models",
+								"getList"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "10"
+								},
+								{
+									"key": "sortingType",
+									"value": "0"
+								},
+								{
+									"key": "category",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "nameFilter",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetModelByUuid",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.XjjN9ZUTkb-7dkPw6m2sQysGbjUHg6RYnIw2t_n0Ab4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/models/getInfo?uuid=dae7dff8-d763-4130-a37b-87398d4f39aa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"models",
+								"getInfo"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "dae7dff8-d763-4130-a37b-87398d4f39aa"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddModel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.XjjN9ZUTkb-7dkPw6m2sQysGbjUHg6RYnIw2t_n0Ab4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "My model1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "test first model22222",
+									"type": "text"
+								},
+								{
+									"key": "categoryName",
+									"value": "Строения",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/letsp/Desktop/Images/digital-art-with-city-landscape-architecture.jpg"
+								},
+								{
+									"key": "vertices",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "triangles",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "memorySize",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/letsp/Desktop/test/Models/chair.glb"
+								},
+								{
+									"key": "lightIntensity",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "skyIntensity",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "lightRadius",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "lightHeight",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "sceneColor",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "cameraX",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "cameraY",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "cameraZ",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/models/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"models",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateModel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.XjjN9ZUTkb-7dkPw6m2sQysGbjUHg6RYnIw2t_n0Ab4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "uuid",
+									"value": "dae7dff8-d763-4130-a37b-87398d4f39aa",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "My model1assd",
+									"type": "text"
+								},
+								{
+									"key": "categoryName",
+									"value": "Строения",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Updated modelaaaaa",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/models/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"models",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveModel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.XjjN9ZUTkb-7dkPw6m2sQysGbjUHg6RYnIw2t_n0Ab4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/models/delete?modelUuid=43ea6b39-3ece-49c0-b903-c9ac454dc9fd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"models",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "modelUuid",
+									"value": "43ea6b39-3ece-49c0-b903-c9ac454dc9fd"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "GetCommentsList",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.8WVCv8WciirUiy0n32LT319nOC04Fvm4DIxrX1GZwHI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/comments/getList?modelUuid=dec0aaae-da7a-48e3-8b2f-1e2dfeb1aa1c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"comments",
+								"getList"
+							],
+							"query": [
+								{
+									"key": "modelUuid",
+									"value": "dec0aaae-da7a-48e3-8b2f-1e2dfeb1aa1c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddComment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.8WVCv8WciirUiy0n32LT319nOC04Fvm4DIxrX1GZwHI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "rating",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "Very cool cool",
+									"type": "text"
+								},
+								{
+									"key": "modelUuid",
+									"value": "dec0aaae-da7a-48e3-8b2f-1e2dfeb1aa1c",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/comments/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"comments",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveComment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.yAC5B6Fjnt2gWHKOgQ_9FhXHKuQRUhrubb34HyRDExM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/comments/delete?modelUuid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"comments",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "modelUuid",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bookmarks",
+			"item": [
+				{
+					"name": "AddBookmark",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.XjjN9ZUTkb-7dkPw6m2sQysGbjUHg6RYnIw2t_n0Ab4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "modelUuid",
+									"value": "dae7dff8-d763-4130-a37b-87398d4f39aa",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/bookmarks/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"bookmarks",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteBookmark",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.XjjN9ZUTkb-7dkPw6m2sQysGbjUHg6RYnIw2t_n0Ab4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/bookmarks/delete?modelUuid=dae7dff8-d763-4130-a37b-87398d4f39aa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"bookmarks",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "modelUuid",
+									"value": "dae7dff8-d763-4130-a37b-87398d4f39aa"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBookmarksList",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.XjjN9ZUTkb-7dkPw6m2sQysGbjUHg6RYnIw2t_n0Ab4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/bookmarks/getList",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"bookmarks",
+								"getList"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.request.headers.add({\r",
+					"  key: \"ApiKey\",\r",
+					"  value: pm.variables.get(\"ApiKey\")\r",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ApiKey",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

@@ -31,7 +31,7 @@
 					"ipv4_address": "172.24.0.3"
 				}
 			},
-			"volumes": [ "minio_data:/data" ],
+			"volumes": [ "./minio_data/data:/data" ],
 			"environment": {
 				"MINIO_ROOT_USER": "admin",
 				"MINIO_ROOT_PASSWORD": "1234567890",
@@ -71,8 +71,5 @@
 				]
 			}
 		}
-	},
-	"volumes": {
-		"minio_data": null
 	}
 }
