@@ -28,7 +28,7 @@ namespace ModelsApp.Dal.Configurations
                 .HasForeignKey((Comment item) => item.UserId)
                 .HasPrincipalKey((UserProfile item) => item.Id);
             builder.HasOne(item => item.Model).WithMany(item => item.Comments)
-                .HasForeignKey((Comment item) => item.UserId)
+                .HasForeignKey((Comment item) => item.ModelId)
                 .HasPrincipalKey((Model item) => item.Id);
         }
     }

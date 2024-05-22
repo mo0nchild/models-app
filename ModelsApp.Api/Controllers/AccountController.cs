@@ -33,10 +33,10 @@ namespace ModelsApp.Api.Controllers
         public async Task<IActionResult> GetInfoHandler()
         {
             var userUuid = this.HttpContext.User.FindFirstValue(ClaimTypes.PrimarySid);
-            if (userUuid == null) return this.Problem("Нельзя прочитать UUID");
+            if (userUuid == null) return this.BadRequest("Нельзя прочитать UUID");
 
             var userData = await this.userInfoService.GetByUUID(Guid.Parse(userUuid));
-            if (userData == null) return this.Problem("Пользователь не найден");
+            if (userData == null) return this.BadRequest("Пользователь не найден");
 
             return this.Ok(this.mapper.Map<AccountResponse>(userData));
         }
@@ -54,7 +54,7 @@ namespace ModelsApp.Api.Controllers
             catch(ApiException errorInfo)
             {
                 this.Logger.LogWarning(errorInfo.Message);
-                return this.Problem(errorInfo.Message);
+                return this.BadRequest(errorInfo.Message);
             }
             this.Logger.LogInformation($"Update User: {mappedRequest.UUID}");
             return this.Ok("Данные пользователя обновлены");
@@ -71,7 +71,7 @@ namespace ModelsApp.Api.Controllers
             catch (ApiException errorInfo)
             {
                 this.Logger.LogWarning(errorInfo.Message);
-                return this.Problem(errorInfo.Message);
+                return this.BadRequest(errorInfo.Message);
             }
             this.Logger.LogInformation($"Remove User: {userUuid}");
             return this.Ok("Пользователь успешно удален");

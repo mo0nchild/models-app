@@ -125,6 +125,8 @@ namespace ModelsApp.Dal.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
+                    b.HasIndex("ModelId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Comment", "public", t =>
@@ -338,7 +340,7 @@ namespace ModelsApp.Dal.Migrations
                 {
                     b.HasOne("ModelsApp.Dal.Entities.Model", "Model")
                         .WithMany("Comments")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("ModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

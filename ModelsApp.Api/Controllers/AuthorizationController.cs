@@ -83,7 +83,7 @@ namespace ModelsApp.Api.Controllers
             catch (ApiException errorInfo)
             {
                 this.Logger.LogWarning(errorInfo.Message);
-                return this.Problem(errorInfo.Message);
+                return this.BadRequest(errorInfo.Message);
             }
             this.Logger.LogInformation($"Add User: {request.Name}");
             var newRequest = new LoginRequest() { Login = request.Login, Password = request.Password };

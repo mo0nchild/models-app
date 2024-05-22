@@ -22,11 +22,11 @@ namespace ModelsApp.Api.Controllers
 
         private readonly IMapper mapper = default!;
         private readonly IModelInfo modelInfoService = default!;
-        public ModelsController(IMapper mapper, IModelInfo userInfo) : base()
+        public ModelsController(IMapper mapper, IModelInfo modelInfo) : base()
         {
             this.Logger = LoggerFactory.Create(builder => builder.AddConsole())
                 .CreateLogger<AuthorizationController>();
-            (this.modelInfoService, this.mapper) = (userInfo, mapper);
+            (this.modelInfoService, this.mapper) = (modelInfo, mapper);
         }
         protected virtual async Task<bool> CheckProfileAccess(Guid resourceUuid)
         {
@@ -47,7 +47,7 @@ namespace ModelsApp.Api.Controllers
             catch (ApiException errorInfo) 
             {
                 this.Logger.LogWarning(errorInfo.Message);
-                return this.Problem(errorInfo.Message);
+                return this.BadRequest(errorInfo.Message);
             }
             this.Logger.LogInformation($"Add Model: {mappedRequest.Name}");
             return this.Ok("Модель успешно добавлена");
@@ -59,14 +59,14 @@ namespace ModelsApp.Api.Controllers
         {
             if (!(await this.CheckProfileAccess(request.UUID)))
             {
-                return this.Problem("Модель не принадлежит пользователю");
+                return this.BadRequest("Модель не принадлежит пользователю");
             }
             var mappedRequest = this.mapper.Map<UpdateModelData>(request);
             try { await this.modelInfoService.UpdateModel(mappedRequest); }
             catch (ApiException errorInfo)
             {
                 this.Logger.LogWarning(errorInfo.Message);
-                return this.Problem(errorInfo.Message);
+                return this.BadRequest(errorInfo.Message);
             }
             this.Logger.LogInformation($"Update Model: {mappedRequest.Name}");
             return this.Ok("Модель успешно обновлена");
@@ -78,13 +78,13 @@ namespace ModelsApp.Api.Controllers
         {
             if (!(await this.CheckProfileAccess(modelUuid)))
             {
-                return this.Problem("Модель не принадлежит пользователю");
+                return this.BadRequest("Модель не принадлежит пользователю");
             }
             try { await this.modelInfoService.DeleteModel(modelUuid); }
             catch (ApiException errorInfo)
             {
                 this.Logger.LogWarning(errorInfo.Message);
-                return this.Problem(errorInfo.Message);
+                return this.BadRequest(errorInfo.Message);
             }
             this.Logger.LogInformation($"Remove Model: {modelUuid}");
             return this.Ok("Модель успешно удалена");

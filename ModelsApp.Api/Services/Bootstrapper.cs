@@ -1,4 +1,6 @@
 ﻿using ModelsApp.Api.Commons.Mapping;
+using ModelsApp.Api.Services.BookmarkInfo;
+using ModelsApp.Api.Services.CommentInfo;
 using ModelsApp.Api.Services.ModelInfo;
 using ModelsApp.Api.Services.RequestLogging;
 using ModelsApp.Api.Services.S3Storage;
@@ -18,7 +20,10 @@ namespace ModelsApp.Api.Services
                 options.AddProfile(new AssemblyProfile(Assembly.GetExecutingAssembly()));
             });
             collection.AddTransient<IRequestLogging, RequestLogging.RequestLogging>();
-            
+
+            collection.AddTransient<ICommentInfo, CommentInfo.CommentInfo>();
+            collection.AddTransient<IBookmarkInfo, BookmarkInfo.BookmarkInfo>();
+
             collection.AddTransient<IUserInfo, UserInfo.UserInfo>();
             collection.AddTransient<IModelInfo, ModelInfo.ModelInfo>();
             return collection;
