@@ -23,8 +23,4 @@
     <ProjectReference Include="..\ModelsApp.Dal\ModelsApp.Dal.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Models\Requests\" />
-  </ItemGroup>
-
 </Project>

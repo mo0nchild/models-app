@@ -8,7 +8,7 @@ namespace ModelsApp.Api.Services.ModelInfo
         public Task UpdateModel(UpdateModelData modelData);
         public Task DeleteModel(Guid uuid);
 
-        public Task<ModelListData> GetInfoList(int skip, int take);
+        public Task<ModelListData> GetInfoList(GetModelList request);
         public Task<ModelListData> GetOwnedList(Guid uuid);
 
         public Task<ModelData?> GetInfoByUUID(Guid uuid);

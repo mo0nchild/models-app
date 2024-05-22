@@ -40,7 +40,7 @@ namespace ModelsApp.Api.Controllers
 
             return this.Ok(this.mapper.Map<AccountResponse>(userData));
         }
-        [Route("update"), HttpPost]
+        [Route("update"), HttpPut]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> UpdateInfoHandler([FromForm] UpdateAccountRequest request)
@@ -56,7 +56,7 @@ namespace ModelsApp.Api.Controllers
                 this.Logger.LogWarning(errorInfo.Message);
                 return this.Problem(errorInfo.Message);
             }
-            this.Logger.LogWarning($"Update User: {mappedRequest.UUID}");
+            this.Logger.LogInformation($"Update User: {mappedRequest.UUID}");
             return this.Ok("Данные пользователя обновлены");
         }
         [Route("delete"), HttpDelete]
@@ -73,7 +73,7 @@ namespace ModelsApp.Api.Controllers
                 this.Logger.LogWarning(errorInfo.Message);
                 return this.Problem(errorInfo.Message);
             }
-            this.Logger.LogWarning($"Remove User: {userUuid}");
+            this.Logger.LogInformation($"Remove User: {userUuid}");
             return this.Ok("Пользователь успешно удален");
         }
     }

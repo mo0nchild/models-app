@@ -8,10 +8,8 @@ namespace ModelsApp.Api.Services.ModelInfo.Commons
     {
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = String.Empty;
-
-        public int Downloads { get; set; } = default;
-        public int Views { get; set; } = default!;
         public IFormFile Image { get; set; } = default!;
+        public string CategoryName { get; set; } = default!;
 
         public Guid OwnerUuid { get; set; } = Guid.Empty;
         public int Vertices { get; set; } = default!;

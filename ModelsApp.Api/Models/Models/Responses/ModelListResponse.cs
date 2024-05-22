@@ -16,11 +16,12 @@ namespace ModelsApp.Api.Models.Models.Responses
             public int Downloads { get; set; } = default;
             public int Views { get; set; } = default!;
             public DateTime DateTime { get; set; } = default!;
+            public double Rating { get; set; } = default!;
 
             public string CategoryName { get; set; } = string.Empty;
             public string? ImageName { get; set; } = default;
         }
-        public List<ModelItemData> Items { get; set; } = new();
+        public List<ModelItemResponse> Items { get; set; } = new();
         public int AllCount { get; set; } = default!;
     }
 }

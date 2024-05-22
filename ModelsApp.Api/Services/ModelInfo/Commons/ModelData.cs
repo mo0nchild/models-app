@@ -16,14 +16,17 @@ namespace ModelsApp.Api.Services.ModelInfo.Commons
         public DateTime DateTime { get; set; } = default!;
 
         public string CategoryName { get; set; } = string.Empty;
+        public double Rating { get; set; } = default!;
         public string? ImageName { get; set; } = default;
 
         public UserData Owner { get; set; } = default!;
         public ModelFileInfo Info { get; set; } = default!;
         public virtual void ConfigureMapping(Profile profile)
         {
+            var averageFilter = (Model p) => p.Comments.Sum(op => (double)op.Rating / p.Comments.Count());
             profile.CreateMap<Model, ModelData>()
-                .ForMember(p => p.CategoryName, options => options.MapFrom(p => p.Category.Name));
+                .ForMember(p => p.CategoryName, options => options.MapFrom(p => p.Category.Name))
+                .ForMember(item => item.Rating, options => options.MapFrom(p => averageFilter(p)));
         }
     }
 }

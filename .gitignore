@@ -1,0 +1,5 @@
+bin/
+obj/
+postgres-data/
+.vs/
+node_modules/
