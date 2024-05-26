@@ -16,6 +16,7 @@ using ModelsApp.Api.Services.UserInfo;
 using ModelsApp.Api.Services.UserInfo.Commons;
 using ModelsApp.Api.Commons.Exceptions;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Cors;
 
 namespace ModelsApp.Api.Controllers
 {
@@ -50,7 +51,7 @@ namespace ModelsApp.Api.Controllers
         public async Task<IActionResult> LoginHandler([FromQuery] LoginRequest request)
         {
             var userInfo = await this.userInfoService.Authorization(request.Login, request.Password);
-            if (userInfo == null) return this.Problem("Пользователь не найден");
+            if (userInfo == null) return this.BadRequest("Пользователь не найден");
             var resultClaims = new List<Claim>()
             {
                 new Claim(ClaimTypes.PrimarySid, userInfo.Guid.ToString()),

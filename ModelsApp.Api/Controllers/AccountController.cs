@@ -40,6 +40,16 @@ namespace ModelsApp.Api.Controllers
 
             return this.Ok(this.mapper.Map<AccountResponse>(userData));
         }
+        [Route("getByUuid"), HttpGet]
+        [ProducesResponseType(typeof(AccountResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> GetInfoHandler([FromQuery] Guid uuid)
+        {
+            var userData = await this.userInfoService.GetByUUID(uuid);
+            if (userData == null) return this.BadRequest("Пользователь не найден");
+
+            return this.Ok(this.mapper.Map<AccountResponse>(userData));
+        }
         [Route("update"), HttpPut]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -50,6 +60,7 @@ namespace ModelsApp.Api.Controllers
 
             var mappedRequest = this.mapper.Map<UpdateUserData>(request);
             mappedRequest.UUID = Guid.Parse(userUuid);
+
             try { await this.userInfoService.UpdateUser(mappedRequest); }
             catch(ApiException errorInfo)
             {

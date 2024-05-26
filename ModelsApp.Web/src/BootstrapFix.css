@@ -1,0 +1,29 @@
+.panel-info {
+    box-shadow: 0px 0px 20px #888;
+    background-color: #242424;
+    border-radius: 20px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+.panel-info:hover {
+    box-shadow: 0px 0px 20px #FFF;
+}
+.button-active {
+    background-color: #323232;
+    border: 1px solid #FFF;
+}
+.error-panel {
+    background-color: #993d37;
+    z-index: 0;
+    color: #FFF;
+    text-align: start;
+    border: none;
+
+    box-shadow: 0px 0px 10px #c03d33;
+    transition: box-shadow 0.3s ease-in-out;
+}
+.error-panel:hover {
+    box-shadow: 0px 0px 10px #e74b40;
+}
+.form-control::placeholder {
+    color: #FFF
+}

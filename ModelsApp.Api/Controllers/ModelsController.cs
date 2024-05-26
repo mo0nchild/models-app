@@ -99,7 +99,7 @@ namespace ModelsApp.Api.Controllers
 
             return this.Ok(this.mapper.Map<ModelResponse>(result));
         }
-        [Route("getList"), HttpGet]
+        [Route("getList"), HttpGet, AllowAnonymous]
         [ProducesResponseType(typeof(ModelListResponse), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetListHandler([FromQuery] GetModelsListRequest request)

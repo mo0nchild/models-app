@@ -24,11 +24,11 @@ namespace ModelsApp.Api
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddProblemDetails();
 
-            builder.Services.AddControllers();
             builder.Services.AddCors(options => options.AddPolicy(CorsName, builder =>
             {
                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
             }));
+            builder.Services.AddControllers();
             builder.Services.Configure<JwtBearerConfig>(options =>
             {
                 var authOptions = builder.Configuration.GetSection("Authentication").Get<JwtBearerConfig>()!;
@@ -92,10 +92,12 @@ namespace ModelsApp.Api
                     options.SwaggerEndpoint("/swagger/modelsapp/swagger.json", "modelsapp");
                 });
             }
-            application.UseApiAccess().UseRequestLogging();
-            application.UseAuthentication().UseRouting().UseAuthorization();
             application.UseCors(CorsName);
-            application.UseEndpoints(options => options.MapControllers());
+
+            application.UseApiAccess().UseRequestLogging();
+            application.UseAuthentication().UseAuthorization();
+
+            application.MapControllers();
             application.Run();
         }
     }

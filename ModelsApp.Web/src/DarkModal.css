@@ -1,0 +1,17 @@
+.modal-content {
+    background-color: #323232;
+    color: #fff;
+}
+.modal-header {
+    border-bottom: 1px solid #323232;
+}
+.modal-footer {
+    border-top: 1px solid #323232;
+}
+.close, .btn-close {
+    color: #FFF;
+}
+.modal-btn {
+    background-color: #323232;
+    border: 1px solid #FFF;
+}

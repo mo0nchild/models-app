@@ -16,7 +16,7 @@ namespace ModelsApp.Api.Services.UserInfo
     public class UserInfo : IUserInfo
     {
         private readonly static string BucketName = "images";
-        private readonly static int ExpiryAccess = 60;
+        private readonly static int ExpiryAccess = 3600;
 
         private readonly IDbContextFactory<ModelsDbContext> contextFactory = default!;
         private readonly IMapper mapper = default!;
@@ -53,6 +53,15 @@ namespace ModelsApp.Api.Services.UserInfo
             });
             if (!imageLoaded) throw new ApiException("Изображение не удалось загрузить", typeof(UserInfo));
         }
+        protected virtual async Task RemoveUserImage(string imageName)
+        {
+            var imageRemoving = await this.storageService.RemoveObjectFromStorage(new BucketInfo()
+            {
+                BucketName = UserInfo.BucketName,
+                ObjectName = imageName
+            });
+            if (!imageRemoving) throw new ApiException("Не удалось обработать изображение", typeof(UserInfo));
+        }
         public async Task AddUser(NewUserData userData)
         {
             using (var dbContext = await this.contextFactory.CreateDbContextAsync())
@@ -86,20 +95,20 @@ namespace ModelsApp.Api.Services.UserInfo
                 }
                 record.Name = userData.Name;
                 record.Biography = userData.Biography;
+
                 if (userData.Image != null)
                 {
-                    if (record.ImageName != null)
-                    {
-                        var imageRemoving = await this.storageService.RemoveObjectFromStorage(new BucketInfo()
-                        {
-                            BucketName = UserInfo.BucketName,
-                            ObjectName = record.ImageName
-                        });
-                        if (!imageRemoving) throw new ApiException("Не удалось обработать изображение", typeof(UserInfo));
-
-                    }
+                    if (record.ImageName != null) await this.RemoveUserImage(record.ImageName);
                     else record.ImageName = $"{Guid.NewGuid()}.{userData.Image.FileName.Split('.')[1]}";
+
+                    Console.WriteLine($"\n{record.ImageName}\n");
+
                     await this.UploadUserImage(userData.Image, record.ImageName);
+                }
+                else if(record.ImageName != null)
+                {
+                    await this.RemoveUserImage(record.ImageName);
+                    record.ImageName = null;
                 }
                 await dbContext.SaveChangesAsync();
             }
