@@ -3,17 +3,17 @@ import Avatar from 'react-avatar-edit';
 import { Button, Form, Modal } from 'react-bootstrap';
 
 export type UpdateInfo = {
-    name: string;
-    biography: string,
-    image: Blob | undefined
+    readonly name: string;
+    readonly biography: string,
+    readonly image: Blob | undefined
 }
 export interface UpdateModalProps {
-    currentInfo? : {
+    readonly currentInfo? : {
         name: string,
         biography: string,
         image: string
     }
-    show: boolean;
+    readonly show: boolean;
     onAccept?: (info: UpdateInfo) => void
     onClose: () => void,
 }
@@ -53,14 +53,14 @@ export default function UpdateModal({show, currentInfo, onClose, onAccept}: Upda
                 <Form.Group className="mb-3 px-3" style={{width: '100%'}}>
                     <Form.Label>Имя пользователя:</Form.Label>
                     <Form.Control defaultValue={currentInfo == undefined ? '' : currentInfo.name} 
-                        ref={nameRef} type="email" placeholder="Ваше имя"
+                        ref={nameRef} type="text" placeholder="Ваше имя" maxLength={20}
                         style={infoFieldStyle} />
                 </Form.Group>
                 <Form.Group className="mb-3 px-3" style={{width: '100%'}}>
                     <Form.Label>Информация о себе:</Form.Label>
                     <Form.Control defaultValue={currentInfo == undefined ? '' : currentInfo.biography} 
                         ref={biographyRef} as="textarea" rows={3} placeholder='Информация о вас'
-                        style={infoFieldStyle}/>
+                        style={infoFieldStyle} maxLength={50}/>
                 </Form.Group>
             </div>
         </Modal.Body>

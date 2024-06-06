@@ -1,16 +1,25 @@
 import React from 'react';
 import { headerRef } from '@core/App';
 import { useNavigate } from 'react-router-dom';
-import { useApiAccessor } from '@services/ApiAccess';
+import { useApiAccessor, useCheckUser } from '@services/ApiAccess';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
-import '@core/BootstrapFix.css'
+import '@styles/BootstrapFix.css'
+import { ErrorInfo, ErrorInfoHandler } from '@components/ErrorInfo';
 
 export default function Authorization(): React.JSX.Element {
+    const errorRef = React.useRef<ErrorInfoHandler>(null);
     const loginRef = React.useRef<HTMLInputElement>(null);
     const passwordRef = React.useRef<HTMLInputElement>(null);
     
     const navigator = useNavigate();
+    const checkAuth = useCheckUser()
+    React.useEffect(() => {
+        checkAuth.checkUser().then(item => {
+                if(item) navigator('/profile')
+            })
+            .catch(error => console.log(error))
+    }, [])
     const { authorization } = useApiAccessor();
     const loginHandler = React.useCallback(async () => {
         const login = loginRef.current!.value;
@@ -21,7 +30,10 @@ export default function Authorization(): React.JSX.Element {
                 headerRef.current?.updateUser()
                 navigator('/profile')
             })
-            .catch(error => console.log((error as Error).message))
+            .catch(error => {
+                console.log((error as Error).message)
+                errorRef.current?.setError((error as Error).message);
+            })
     }, []);
     const renderLoginForm = (): React.JSX.Element => {
         return (
@@ -29,7 +41,7 @@ export default function Authorization(): React.JSX.Element {
             <Form.Group className="mb-3 px-3" style={infoContentStyle}>
                 <Form.Label>Логин:</Form.Label>
                 <Form.Control className='form-control-fix' ref={loginRef} placeholder="Ваше имя"
-                    style={infoFieldStyle} maxLength={50}/>
+                    style={infoFieldStyle} maxLength={20}/>
             </Form.Group>
             <Form.Group className="mb-4 px-3" style={infoContentStyle}>
                 <Form.Label>Пароль:</Form.Label>
@@ -46,6 +58,11 @@ export default function Authorization(): React.JSX.Element {
     return (
     <div className='mt-5'>
     <Container fluid={'md'}>
+        <Row className='justify-content-center'>
+            <Col sm='12' md='10' lg='8' xl='6'>
+                <ErrorInfo ref={errorRef}/>
+            </Col>
+        </Row>
         <Row className='justify-content-center'>
             <Col sm='12' md='10' lg='8' xl='6'>
                 <div className='p-4 p-md-5 panel-info'>

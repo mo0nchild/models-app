@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
-import { useApiAccessor } from '@services/ApiAccess';
+import { useApiAccessor, useCheckUser } from '@services/ApiAccess';
 import { useNavigate } from 'react-router-dom';
 import { ErrorInfo, ErrorInfoHandler } from '@components/ErrorInfo';
 import { validationFormFactory } from '@services/ValidationField';
@@ -16,6 +16,14 @@ export default function Registration(): React.JSX.Element {
 
     const { accessor, authorization } = useApiAccessor();
     const navigator = useNavigate();
+    const checkAuth = useCheckUser()
+    React.useEffect(() => {
+        checkAuth.checkUser().then(item => {
+                if(item) navigator('/profile')
+            })
+            .catch(error => console.log(error))
+    }, [])
+
     const registrationHandler = React.useCallback(async () => {
         const formData = new FormData();
 
@@ -50,7 +58,7 @@ export default function Registration(): React.JSX.Element {
             <Form.Group className="mb-3 px-3" style={infoContentStyle}>
                 <Form.Label>Логин:</Form.Label>
                 <Form.Control className='form-control-fix' ref={loginRef} placeholder="Ваше имя"
-                    style={infoFieldStyle} maxLength={50} />
+                    style={infoFieldStyle} maxLength={20} />
             </Form.Group>
             <Form.Group className="mb-4 px-3" style={infoContentStyle}>
                 <Form.Label>Пароль:</Form.Label>
@@ -63,12 +71,12 @@ export default function Registration(): React.JSX.Element {
             <Form.Group className="mb-3 px-3" style={infoContentStyle}>
                 <Form.Label>Имя пользователя:</Form.Label>
                 <Form.Control className='form-control-fix' ref={nameRef} type="email" placeholder="Ваше имя"
-                    style={infoFieldStyle} maxLength={50} />
+                    style={infoFieldStyle} maxLength={20} />
             </Form.Group>
             <Form.Group className="mb-4 px-3" style={infoContentStyle}>
                 <Form.Label>Email:</Form.Label>
                 <Form.Control className='form-control-fix' ref={emailRef} placeholder='Электронная почта'
-                    style={infoFieldStyle} maxLength={100}/>
+                    style={infoFieldStyle} maxLength={50}/>
             </Form.Group>
             <Button className='button-active mt-3' style={{width: '80%'}} onClick={registrationHandler}>
                 Создать профиль

@@ -13,5 +13,6 @@ namespace ModelsApp.Api.Services.ModelInfo
 
         public Task<ModelData?> GetInfoByUUID(Guid uuid);
         public Task<byte[]?> GetDataByUUID(Guid uuid);
+        public Task<string[]> GetCategories();
     }
 }

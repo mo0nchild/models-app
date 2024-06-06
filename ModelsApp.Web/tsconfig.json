@@ -24,7 +24,8 @@
       "@services/*": [ "services/*" ],
       "@pages/*": [ "pages/*" ],
       "@components/*": [ "components/*" ],
-      "@core/*": [ "./*" ]
+      "@core/*": [ "./*" ],
+      "@styles/*": [ "styles/*" ]
     }
   },
   "include": ["src"],

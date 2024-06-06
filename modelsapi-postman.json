@@ -100,7 +100,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.rO742_MKq2wFJBwItbg9n0jkaTunY364rc4kxUEvEIc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.7zJTOCd-imLT43uIxrT0JkPa2zSaE-q2vG1DyqWDVgI",
 									"type": "string"
 								}
 							]
@@ -131,7 +131,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.rO742_MKq2wFJBwItbg9n0jkaTunY364rc4kxUEvEIc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0._4x52zMQ5Cht_ALjdQBUM2L2Y6ZmdsgaM31dPd0Rz2Q",
 									"type": "string"
 								}
 							]
@@ -154,7 +154,8 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/letsp/Desktop/Images/me.png"
+									"src": "/C:/Users/letsp/Desktop/Images/me.png",
+									"disabled": true
 								}
 							]
 						},
@@ -200,6 +201,43 @@
 								"modelsapp",
 								"profile",
 								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserByUuid",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0._4x52zMQ5Cht_ALjdQBUM2L2Y6ZmdsgaM31dPd0Rz2Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/profile/getByUuid?uuid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"profile",
+								"getByUuid"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": null
+								}
 							]
 						}
 					},
@@ -250,16 +288,6 @@
 				{
 					"name": "GetModelsList",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.XjjN9ZUTkb-7dkPw6m2sQysGbjUHg6RYnIw2t_n0Ab4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -340,7 +368,7 @@
 					"response": []
 				},
 				{
-					"name": "AddModel",
+					"name": "GetDataByUuid",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -348,6 +376,43 @@
 								{
 									"key": "token",
 									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.XjjN9ZUTkb-7dkPw6m2sQysGbjUHg6RYnIw2t_n0Ab4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/models/getData?uuid=dae7dff8-d763-4130-a37b-87398d4f39aa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"models",
+								"getData"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "dae7dff8-d763-4130-a37b-87398d4f39aa"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddModel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.uIvbqyH62PbP7-U-DWIjmNBDHnCJ__CGJf60JgltUi4",
 									"type": "string"
 								}
 							]
@@ -375,7 +440,7 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/letsp/Desktop/Images/digital-art-with-city-landscape-architecture.jpg"
+									"src": "/C:/Users/letsp/Desktop/Images/lizard.gif"
 								},
 								{
 									"key": "vertices",
@@ -395,7 +460,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/letsp/Desktop/test/Models/chair.glb"
+									"src": "/C:/Users/letsp/Desktop/Images/myimage.png"
 								},
 								{
 									"key": "lightIntensity",
@@ -435,6 +500,21 @@
 								},
 								{
 									"key": "cameraZ",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "targetX",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "targetY",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "targetZ",
 									"value": "0",
 									"type": "text"
 								}
@@ -520,7 +600,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.XjjN9ZUTkb-7dkPw6m2sQysGbjUHg6RYnIw2t_n0Ab4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.uIvbqyH62PbP7-U-DWIjmNBDHnCJ__CGJf60JgltUi4",
 									"type": "string"
 								}
 							]
@@ -528,7 +608,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/modelsapp/models/delete?modelUuid=43ea6b39-3ece-49c0-b903-c9ac454dc9fd",
+							"raw": "http://localhost:8080/modelsapp/models/delete?modelUuid=de79556c-6c9b-4bee-9d0c-36eb87ed9757",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -542,8 +622,39 @@
 							"query": [
 								{
 									"key": "modelUuid",
-									"value": "43ea6b39-3ece-49c0-b903-c9ac454dc9fd"
+									"value": "de79556c-6c9b-4bee-9d0c-36eb87ed9757"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCategories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJlMDRkYmE2ZS02ZDA4LTQ1NTMtOWI4Zi01NWVhOGE1YjVmM2UiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoiYnl0ZXJicm9kMzg3IiwiYXVkIjoiYnl0ZXJicm9kMzg3In0.MS8MYY57oQ57b6tJTx-HrmszxaI_5gn2g4zuomJcsQ8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/modelsapp/models/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modelsapp",
+								"models",
+								"categories"
 							]
 						}
 					},

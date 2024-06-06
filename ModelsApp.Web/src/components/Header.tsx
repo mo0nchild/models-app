@@ -1,13 +1,14 @@
 import { Avatar } from '@mui/material';
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
 
 export type UserData = {
-    name: string,
-    image: string | null
+    readonly name: string,
+    readonly image: string | null
 }
 interface HeaderProps {
-    user: UserData | null
+    readonly user: UserData | null
 }
 function HeaderComponent({user} : HeaderProps): React.JSX.Element {
     const userPanel = (): JSX.Element => {
@@ -26,6 +27,13 @@ function HeaderComponent({user} : HeaderProps): React.JSX.Element {
         </a>
         )
     }
+    const createLinkStyle = (path: string): React.CSSProperties => {
+        const underlinkEnable = path == window.location.pathname;
+        return {
+            textDecoration: underlinkEnable ? 'underline' : 'none',
+            textUnderlineOffset: '5px', ...navLinkStyle
+        }
+    }
     return (
     <div style={headerStyle}>
     <Navbar expand='md' style={{backgroundColor: '#242424'}} variant='dark'>
@@ -34,10 +42,10 @@ function HeaderComponent({user} : HeaderProps): React.JSX.Element {
             <Navbar.Toggle/>
             <Navbar.Collapse color='#FFF' style={{padding: '10px 0px'}}>
                 <Nav className='me-auto'>
-                    <Nav.Link href={'/'} style={navLinkStyle}>Главная</Nav.Link>
-                    <Nav.Link href={'/'} style={navLinkStyle}>Каталог</Nav.Link>
+                    <Nav.Link href={'/'} style={createLinkStyle('/')}>Каталог</Nav.Link>
+                    <Nav.Link href={'/create'} style={createLinkStyle('/create')}>Загрузить модель</Nav.Link>
                 </Nav>
-                <div style={{backgroundColor: '#FFF', height: '1px'}}></div>
+                <div style={{backgroundColor: '#FFF', height: '1px', margin: '5px 0px'}}></div>
                 { user != null ?  userPanel() : loginPanel() }
             </Navbar.Collapse>
         </Container>
@@ -46,7 +54,7 @@ function HeaderComponent({user} : HeaderProps): React.JSX.Element {
     )
 }
 export type HeaderHandler = {
-    updateUser: () => Promise<void>
+    readonly updateUser: () => Promise<void>
 }
 export const Header = React.forwardRef<HeaderHandler, {}>((_, ref) => {
     const [ userData, setUserData ] = React.useState<UserData | null>(null);

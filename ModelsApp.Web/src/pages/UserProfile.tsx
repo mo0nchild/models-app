@@ -4,11 +4,10 @@ import UserInfo from '@components/UserInfo';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
 import UpdateModal, { UpdateInfo } from '@components/userprofile/UpdateModal';
-import { useNavigate } from 'react-router-dom';
 import { Backdrop, CircularProgress } from '@mui/material';
 
-import '@core/DarkModal.css'
-import '@core/BootstrapFix.css'
+import '@styles/DarkModal.css'
+import '@styles/BootstrapFix.css'
 import { Trash } from 'react-bootstrap-icons';
 import { validationFormFactory } from '@services/ValidationField';
 import { ErrorInfo, ErrorInfoHandler } from '@components/ErrorInfo';
@@ -20,7 +19,6 @@ export type UserProfileState = {
     imageName: string
 }
 export default function UserProfile(): React.JSX.Element {
-    const navigator = useNavigate();
     const { accessor, logout } = useApiAccessor()
     const [ info, setInfo ] = React.useState<UserProfileState | null>(null);
     const [ updateShow, setUpdateShow ] = React.useState<boolean>(false);
@@ -87,14 +85,17 @@ export default function UserProfile(): React.JSX.Element {
                         <Container className='my-2'>
                             <Row className='justify-content-center gy-3'>
                                 <Col xs={3} md={2} lg={2}>
-                                    <Button className='button-active'  style={{backgroundColor: '#993d37', width: '100%' }} 
-                                        onClick={deleteUserHandler}>
+                                    <Button className='button-active' onClick={deleteUserHandler}
+                                        style={{backgroundColor: '#993d37', width: '100%' }}>
                                         <Trash width={22} height={22}/>
                                     </Button>
                                 </Col>
                                 <Col xs={9} md={5} lg={4}>
                                     <Button className='button-active' style={{width: '100%'}}
-                                        onClick={() => setUpdateShow(true)}>
+                                        onClick={() => {
+                                            errorRef.current?.closeError();
+                                            setUpdateShow(true)
+                                        }}>
                                         Изменить
                                     </Button>
                                 </Col>

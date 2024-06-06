@@ -65,7 +65,7 @@ namespace ModelsApp.Api.Controllers
             this.Logger.LogInformation($"Remove Comment: {modelUuid}");
             return this.Ok("Комментарий успешно удален");
         }
-        [Route("getList"), HttpGet]
+        [Route("getList"), HttpGet, AllowAnonymous]
         [ProducesResponseType(typeof(CommentsListResponse), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetCommentsHandler([FromQuery] Guid modelUuid)

@@ -251,6 +251,15 @@ namespace ModelsApp.Dal.Migrations
                     b.Property<double>("SkyIntensity")
                         .HasColumnType("double precision");
 
+                    b.Property<double>("TargetX")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("TargetY")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("TargetZ")
+                        .HasColumnType("double precision");
+
                     b.Property<int>("Triangles")
                         .HasColumnType("integer");
 

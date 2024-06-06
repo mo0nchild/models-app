@@ -28,22 +28,23 @@ namespace ModelsApp.Api.Services.ModelInfo.Commons
         public double CameraY { get; set; } = default!;
         public double CameraZ { get; set; } = default!;
 
+        public double TargetX { get; set; } = default!;
+        public double TargetY { get; set; } = default!;
+        public double TargetZ { get; set; } = default!;
+
         public virtual void ConfigureMapping(Profile profile)
         {
             profile.CreateMap<NewModelData, Model>().ForMember(p => p.Info, 
                 options => options.MapFrom(p => new ModelsApp.Dal.Entities.ModelInfo()
                 {
-                    CameraX = p.CameraX,
-                    CameraY = p.CameraY,
-                    CameraZ = p.CameraZ,
-                    LightHeight = p.LightHeight,
-                    SkyIntensity = p.SkyIntensity,
-                    LightRadius = p.LightRadius,
-                    MemorySize = p.MemorySize,
-                    LightIntensity = p.LightIntensity,
+                    TargetX = p.TargetX, TargetY = p.TargetY, TargetZ = p.TargetZ,
+                    CameraX = p.CameraX, CameraY = p.CameraY, CameraZ = p.CameraZ,
+                    LightHeight = p.LightHeight, 
+                    LightRadius = p.LightRadius, 
+                    SkyIntensity = p.SkyIntensity, LightIntensity = p.LightIntensity,
                     SceneColor = p.SceneColor,
-                    Triangles = p.Triangles,
-                    Vertices = p.Vertices,
+                    MemorySize = p.MemorySize,
+                    Triangles = p.Triangles, Vertices = p.Vertices,
                 }));
         }
     }

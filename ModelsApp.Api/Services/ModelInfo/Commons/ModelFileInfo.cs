@@ -19,5 +19,8 @@ namespace ModelsApp.Api.Services.ModelInfo.Commons
         public double CameraX { get; set; } = default!;
         public double CameraY { get; set; } = default!;
         public double CameraZ { get; set; } = default!;
+        public double TargetX { get; set; } = default!;
+        public double TargetY { get; set; } = default!;
+        public double TargetZ { get; set; } = default!;
     }
 }

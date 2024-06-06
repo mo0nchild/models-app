@@ -51,6 +51,7 @@ namespace ModelsApp.Api.Services.ModelInfo
                     BucketName = ModelInfo.ImageBucketName,
                     ObjectName = mappedData.ImageName
                 };
+                
                 var imageLoaded = await this.storageService.LoadObjectToStorage(modelData.Image, imageStorageInfo);
                 if (!imageLoaded) throw new ApiException("Изображение не удалось загрузить", typeof(ModelInfo));
 
@@ -60,7 +61,7 @@ namespace ModelsApp.Api.Services.ModelInfo
                     BucketName = ModelInfo.ModelBucketName,
                     ObjectName = mappedData.Info.Filename
                 };
-                if (!(await this.storageService.LoadObjectToStorage(modelData.Image, modelStorageInfo)))
+                if (!(await this.storageService.LoadObjectToStorage(modelData.File, modelStorageInfo)))
                 {
                     await this.storageService.RemoveObjectFromStorage(imageStorageInfo);
                     throw new ApiException("Модель не удалось загрузить", typeof(ModelInfo));
@@ -104,7 +105,7 @@ namespace ModelsApp.Api.Services.ModelInfo
                     BucketName = ModelInfo.ModelBucketName,
                     ObjectName = record.Info.Filename
                 });
-                dbContext.ModelInfos.RemoveRange(record.Info);
+                dbContext.Models.RemoveRange(record);
                 await dbContext.SaveChangesAsync();
             }
         }
@@ -115,7 +116,7 @@ namespace ModelsApp.Api.Services.ModelInfo
                 var record = await dbContext.Models.Where(item => item.Guid == uuid)
                     .Include(item => item.Info).FirstOrDefaultAsync();
                 if (record == null) return null;
-                record.Downloads++;
+                // record.Downloads++;
                 await dbContext.SaveChangesAsync();
                 return await this.storageService.GetObjectFromStorage(new BucketInfo()
                 {
@@ -139,6 +140,11 @@ namespace ModelsApp.Api.Services.ModelInfo
                 {
                     BucketName = ModelInfo.ImageBucketName,
                     ObjectName = record.ImageName!
+                }, ModelInfo.ExpiryAccess);
+                mappedRecord.Owner.ImageName = await this.storageService.GetObjectUrlFromStorage(new BucketInfo()
+                {
+                    BucketName = ModelInfo.ImageBucketName,
+                    ObjectName = record.Owner.ImageName!
                 }, ModelInfo.ExpiryAccess);
                 record.Views++;
                 await dbContext.SaveChangesAsync();
@@ -202,6 +208,14 @@ namespace ModelsApp.Api.Services.ModelInfo
                     Items = this.mapper.Map<List<ModelItemData>>(record),
                     AllCount = record.Count()
                 };
+            }
+        }
+        public async Task<string[]> GetCategories()
+        {
+            using (var dbContext = await this.contextFactory.CreateDbContextAsync())
+            {
+                var results = dbContext.ModelCategories.Select(item => item.Name);
+                return await results.ToArrayAsync();
             }
         }
     }

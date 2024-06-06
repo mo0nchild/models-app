@@ -13,6 +13,16 @@ function headersFactory(formUsing: boolean = false): Headers {
     // if(formUsing) headers.append('Content-Type', `multipart/form-data`);
     return headers;
 }
+export interface UserInfo { 
+    readonly jwtToken: string | null;
+    readonly uuid: string | null;
+}
+export function getUserInfo(): UserInfo {
+    return { 
+        jwtToken: window.localStorage.getItem('jwtToken'),
+        uuid: window.localStorage.getItem('guid'),
+    }
+}
 export type RequestInfo = {
     url: string;
     method?: 'GET' | 'POST' | 'DELETE' | 'PUT'
@@ -25,10 +35,22 @@ export type ApiAccessor = {
     authorization: (request: AuthorizationInfo) => Promise<void>,
     logout: () => Promise<void>
 }
+export function useCheckUser(): { checkUser: () => Promise<boolean> } {
+    const { accessor } = useApiAccessor();
+    return {
+        checkUser: async () => {
+            try { 
+                await accessor({ url: 'http://localhost:8080/modelsapp/profile/getInfo' }) 
+            }
+            catch (error) { return false; }
+            return true;
+        }
+    }
+}
 export function useApiAccessor(): ApiAccessor {
     const navigator = useNavigate();
     return {
-        accessor: async <TData = any>(request: RequestInfo) => {
+        accessor: async <TData = any>(request: RequestInfo): Promise<TData> => {
             const { url, body, method } = request;
             const response = await window.fetch(url, {
                 method: method == undefined ? 'GET' : method,

@@ -2,10 +2,10 @@ import React from 'react';
 import { Col, Container, Form, Row } from 'react-bootstrap';
 
 export interface UserInfoProps {
-    name: string;
-    email: string;
-    biography: string;
-    image: string;
+    readonly name: string;
+    readonly email: string;
+    readonly biography: string;
+    readonly image: string;
 }
 export default function UserInfo(props: UserInfoProps): React.JSX.Element {
     const { name, email, biography, image } = props

@@ -36,9 +36,17 @@ namespace ModelsApp.Api.Controllers
             var ownedList = await this.modelInfoService.GetOwnedList(Guid.Parse(profileUuid));
             return ownedList.Items.FirstOrDefault(item => item.Guid == resourceUuid) != null;
         }
+        [Route("categories"), HttpGet, AllowAnonymous]
+        [ProducesResponseType(typeof(string[]), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> GetCategories()
+        {
+            return this.Ok(await this.modelInfoService.GetCategories());
+        }
         [Route("add"), HttpPost]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [RequestSizeLimit(30_000_000)]
         public async Task<IActionResult> AddModelHandler([FromForm] AddModelRequest request)
         {
             var mappedRequest = this.mapper.Map<NewModelData>(request);
@@ -89,7 +97,17 @@ namespace ModelsApp.Api.Controllers
             this.Logger.LogInformation($"Remove Model: {modelUuid}");
             return this.Ok("Модель успешно удалена");
         }
-        [Route("getInfo"), HttpGet]
+        [Route("getData"), HttpGet, AllowAnonymous]
+        [ProducesResponseType(typeof(byte[]), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> GetDataHandler([FromQuery] Guid uuid)
+        {
+            var result = await this.modelInfoService.GetDataByUUID(uuid);
+            if (result == null) return this.BadRequest("Модель не найдена");
+
+            return this.File(result, "application/octet-stream");
+        }
+        [Route("getInfo"), HttpGet, AllowAnonymous]
         [ProducesResponseType(typeof(ModelResponse), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetInfoHandler([FromQuery] Guid uuid)
