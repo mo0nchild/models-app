@@ -46,7 +46,8 @@ namespace ModelsApp.Api.Controllers
         [Route("add"), HttpPost]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [RequestSizeLimit(30_000_000)]
+        [RequestSizeLimit(200_000_000)]
+        [RequestFormLimits(ValueCountLimit = int.MaxValue, MultipartBodyLengthLimit = int.MaxValue)]
         public async Task<IActionResult> AddModelHandler([FromForm] AddModelRequest request)
         {
             var mappedRequest = this.mapper.Map<NewModelData>(request);
