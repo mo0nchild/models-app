@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
-import { useApiAccessor, useCheckUser } from '@services/ApiAccess';
+import { getUserInfo, useApiAccessor, useCheckUser } from '@services/ApiAccess';
 import { useNavigate } from 'react-router-dom';
 import { ErrorInfo, ErrorInfoHandler } from '@components/ErrorInfo';
 import { validationFormFactory } from '@services/ValidationField';
@@ -18,12 +18,8 @@ export default function Registration(): React.JSX.Element {
     const navigator = useNavigate();
     const checkAuth = useCheckUser()
     React.useEffect(() => {
-        checkAuth.checkUser().then(item => {
-                if(item) navigator('/profile')
-            })
-            .catch(error => console.log(error))
+        if (getUserInfo().jwtToken != null) navigator('/profile');
     }, [])
-
     const registrationHandler = React.useCallback(async () => {
         const formData = new FormData();
 

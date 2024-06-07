@@ -1,7 +1,7 @@
 import React from 'react';
 import { headerRef } from '@core/App';
 import { useNavigate } from 'react-router-dom';
-import { useApiAccessor, useCheckUser } from '@services/ApiAccess';
+import { getUserInfo, useApiAccessor, useCheckUser } from '@services/ApiAccess';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
 import '@styles/BootstrapFix.css'
@@ -15,10 +15,7 @@ export default function Authorization(): React.JSX.Element {
     const navigator = useNavigate();
     const checkAuth = useCheckUser()
     React.useEffect(() => {
-        checkAuth.checkUser().then(item => {
-                if(item) navigator('/profile')
-            })
-            .catch(error => console.log(error))
+        if (getUserInfo().jwtToken != null) navigator('/profile');
     }, [])
     const { authorization } = useApiAccessor();
     const loginHandler = React.useCallback(async () => {
